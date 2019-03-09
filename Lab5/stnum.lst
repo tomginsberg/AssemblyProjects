@@ -171,10 +171,10 @@
 0000             23   
 0000             24   
 0000             25   org 0000H
-0000 020281      26            ljmp Task7
+0000 02001D      26            ljmp Main
 0003             27   
 0003             28   Delay:
-0003 7AB4        29                    mov R2, #180
+0003 7A28        29                    mov R2, #40
 0005 79FA        30            L3:     mov R1, #250
 0007 78FA        31            L2:     mov R0, #250
 0009 D8FE        32            L1: djnz R0, L1 ;3 Machince cycles 
@@ -191,315 +191,364 @@
 001A DAF6        43                    djnz R2, L6 
 001C 22          44                    ret
 001D             45   
-001D             46   Task0:
-001D 758F19      47            mov HEX5, FOUR
-0020 758E30      48       mov HEX4, THREE
-0023 759419      49       mov HEX3, FOUR
-0026 759302      50       mov HEX2, SIX
-0029 759219      51       mov HEX1, FOUR
-002C 759179      52       mov HEX0, ONE
-002F             53   
-002F             54   Task1:
-002F 758FFF      55       mov HEX5, BLANK
-0032 758EFF      56       mov HEX4, BLANK
-0035 7594FF      57       mov HEX3, BLANK
-0038 7593FF      58       mov HEX2, BLANK
-003B 759202      59       mov HEX1, SIX
-003E 759130      60       mov HEX0, THREE
-0041 020044      61       ljmp Task2
-0044             62   
-0044             63   Task2:
-0044 758F19      64       mov HEX5, FOUR
-0047 758E30      65       mov HEX4, THREE
-004A 759419      66       mov HEX3, FOUR
-004D 759302      67       mov HEX2, SIX
-0050 759219      68       mov HEX1, FOUR
-0053 759179      69       mov HEX0, ONE
-0056 120003      70       lcall Delay
-0059             71   
-0059 758F30      72       mov HEX5, THREE
-005C 758E19      73       mov HEX4, FOUR
-005F 759402      74       mov HEX3, SIX
-0062 759319      75       mov HEX2, FOUR
-0065 759279      76       mov HEX1, ONE
-0068 759102      77       mov HEX0, SIX
-006B 120003      78       lcall Delay
-006E             79   
-006E 758F19      80       mov HEX5, FOUR
-0071 758E02      81       mov HEX4, SIX
-0074 759419      82       mov HEX3, FOUR
-0077 759379      83       mov HEX2, ONE
-007A 759202      84       mov HEX1, SIX
-007D 759130      85       mov HEX0, THREE
-0080 120003      86       lcall Delay
-0083             87   
-0083 758F02      88       mov HEX5, SIX
-0086 758E19      89       mov HEX4, FOUR
-0089 759479      90       mov HEX3, ONE
-008C 759302      91       mov HEX2, SIX
-008F 759230      92       mov HEX1, THREE
-0092 759119      93       mov HEX0, FOUR
-0095 120003      94       lcall Delay
-0098             95   
-0098 758F19      96       mov HEX5, FOUR
-009B 758E79      97       mov HEX4, ONE
-009E 759402      98       mov HEX3, SIX
-00A1 759330      99       mov HEX2, THREE
-00A4 759219     100       mov HEX1, FOUR
-00A7 759130     101       mov HEX0, THREE
-00AA 120003     102       lcall Delay
-00AD            103   
-00AD 758F79     104       mov HEX5, ONE
-00B0 758E02     105       mov HEX4, SIX
-00B3 759430     106       mov HEX3, THREE
-00B6 759319     107       mov HEX2, FOUR
-00B9 759230     108       mov HEX1, THREE
-00BC 759119     109       mov HEX0, FOUR
-00BF 120003     110       lcall Delay
-00C2            111   
-00C2 758F02     112       mov HEX5, SIX
-00C5 758E30     113       mov HEX4, THREE
-00C8 759419     114       mov HEX3, FOUR
-00CB 759330     115       mov HEX2, THREE
-00CE 759219     116       mov HEX1, FOUR
-00D1 759102     117       mov HEX0, SIX
-00D4 120003     118       lcall Delay
-00D7            119   
-00D7 758F30     120       mov HEX5, THREE
-00DA 758E19     121       mov HEX4, FOUR
-00DD 759430     122       mov HEX3, THREE
-00E0 759319     123       mov HEX2, FOUR
-00E3 759202     124       mov HEX1, SIX
-00E6 759119     125       mov HEX0, FOUR
-00E9 120003     126       lcall Delay
-00EC 020044     127       ljmp Task2
-00EF            128   
-00EF            129   Task3:
-00EF 758F19     130       mov HEX5, FOUR
-00F2 758E30     131       mov HEX4, THREE
-00F5 759419     132       mov HEX3, FOUR
-00F8 759302     133       mov HEX2, SIX
-00FB 759219     134       mov HEX1, FOUR
-00FE 759179     135       mov HEX0, ONE
-0101 120003     136       lcall Delay
-0104            137   
-0104 758F30     138       mov HEX5, THREE
-0107 758E19     139       mov HEX4, FOUR
-010A 759430     140       mov HEX3, THREE
-010D 759319     141       mov HEX2, FOUR
-0110 759202     142       mov HEX1, SIX
-0113 759119     143       mov HEX0, FOUR
-0116 120003     144       lcall Delay
-0119            145   
-0119 758F02     146       mov HEX5, SIX
-011C 758E30     147       mov HEX4, THREE
-011F 759419     148       mov HEX3, FOUR
-0122 759330     149       mov HEX2, THREE
-0125 759219     150       mov HEX1, FOUR
-0128 759102     151       mov HEX0, SIX
-012B 120003     152       lcall Delay
-012E            153   
-012E 758F79     154       mov HEX5, ONE
-0131 758E02     155       mov HEX4, SIX
-0134 759430     156       mov HEX3, THREE
-0137 759319     157       mov HEX2, FOUR
-013A 759230     158       mov HEX1, THREE
-013D 759119     159       mov HEX0, FOUR
-0140 120003     160       lcall Delay
-0143            161   
-0143 758F19     162       mov HEX5, FOUR
-0146 758E79     163       mov HEX4, ONE
-0149 759402     164       mov HEX3, SIX
-014C 759330     165       mov HEX2, THREE
-014F 759219     166       mov HEX1, FOUR
-0152 759130     167       mov HEX0, THREE
-0155 120003     168       lcall Delay
-0158            169   
-0158 758F02     170       mov HEX5, SIX
-015B 758E19     171       mov HEX4, FOUR
-015E 759479     172       mov HEX3, ONE
-0161 759302     173       mov HEX2, SIX
-0164 759230     174       mov HEX1, THREE
-0167 759119     175       mov HEX0, FOUR
-016A 120003     176       lcall Delay
-016D            177   
-016D 758F19     178       mov HEX5, FOUR
-0170 758E02     179       mov HEX4, SIX
-0173 759419     180       mov HEX3, FOUR
-0176 759379     181       mov HEX2, ONE
-0179 759202     182       mov HEX1, SIX
-017C 759130     183       mov HEX0, THREE
-017F 120003     184       lcall Delay
-0182            185   
-0182 758F30     186       mov HEX5, THREE
-0185 758E19     187       mov HEX4, FOUR
-0188 759402     188       mov HEX3, SIX
-018B 759319     189       mov HEX2, FOUR
-018E 759279     190       mov HEX1, ONE
-0191 759102     191       mov HEX0, SIX
-0194 120003     192       lcall Delay
-0197            193   
-0197            194   Task4:
-0197 758F19     195       mov HEX5, FOUR
-019A 758E30     196       mov HEX4, THREE
-019D 759419     197       mov HEX3, FOUR
-01A0 759302     198       mov HEX2, SIX
-01A3 759219     199       mov HEX1, FOUR
-01A6 759179     200       mov HEX0, ONE
-01A9 120010     201       lcall Blink
-01AC 020197     202       ljmp Task4
-01AF            203   
-01AF            204   Task5:
-01AF 758FFF     205       mov HEX5, BLANK
-01B2 758EFF     206       mov HEX4, BLANK
-01B5 7594FF     207       mov HEX3, BLANK
-01B8 7593FF     208       mov HEX2, BLANK
-01BB 7592FF     209       mov HEX1, BLANK
-01BE 7591FF     210       mov HEX0, BLANK
-01C1 120003     211       lcall Delay
-01C4            212   
-01C4 758F19     213       mov HEX5, FOUR
-01C7 758EFF     214       mov HEX4, BLANK
-01CA 7594FF     215       mov HEX3, BLANK
-01CD 7593FF     216       mov HEX2, BLANK
-01D0 7592FF     217       mov HEX1, BLANK
-01D3 7591FF     218       mov HEX0, BLANK
-01D6 120003     219       lcall Delay
-01D9            220   
-01D9 758F19     221       mov HEX5, FOUR
-01DC 758E30     222       mov HEX4, THREE
-01DF 7594FF     223       mov HEX3, BLANK
-01E2 7593FF     224       mov HEX2, BLANK
-01E5 7592FF     225       mov HEX1, BLANK
-01E8 7591FF     226       mov HEX0, BLANK
-01EB 120003     227       lcall Delay
-01EE            228   
-01EE 758F19     229       mov HEX5, FOUR
-01F1 758E30     230       mov HEX4, THREE
-01F4 759419     231       mov HEX3, FOUR
-01F7 7593FF     232       mov HEX2, BLANK
-01FA 7592FF     233       mov HEX1, BLANK
-01FD 7591FF     234       mov HEX0, BLANK
-0200 120003     235       lcall Delay
-0203            236   
-0203 758F19     237       mov HEX5, FOUR
-0206 758E30     238       mov HEX4, THREE
-0209 759419     239       mov HEX3, FOUR
-020C 759302     240       mov HEX2, SIX
-020F 7592FF     241       mov HEX1, BLANK
-0212 7591FF     242       mov HEX0, BLANK
-0215 120003     243       lcall Delay
-0218            244   
-0218 758F19     245       mov HEX5, FOUR
-021B 758E30     246       mov HEX4, THREE
-021E 759419     247       mov HEX3, FOUR
-0221 759302     248       mov HEX2, SIX
-0224 759219     249       mov HEX1, FOUR
-0227 7591FF     250       mov HEX0, BLANK
-022A 120003     251       lcall Delay
-022D            252   
-022D 758F19     253       mov HEX5, FOUR
-0230 758E30     254       mov HEX4, THREE
-0233 759419     255       mov HEX3, FOUR
-0236 759302     256       mov HEX2, SIX
-0239 759219     257       mov HEX1, FOUR
-023C 759179     258       mov HEX0, ONE
-023F 120003     259       lcall Delay
-0242            260   
-0242            261   Task6:
-0242 758F09     262       mov HEX5, LETTER_H
-0245 758E06     263       mov HEX4, LETTER_E
-0248 759447     264       mov HEX3, LETTER_L
-024B 759347     265       mov HEX2, LETTER_L
-024E 759240     266       mov HEX1, LETTER_O
-0251 7591FF     267       mov HEX0, BLANK
-0254 120003     268       lcall Delay
-0257 758F19     269       mov HEX5, FOUR
-025A 758E30     270       mov HEX4, THREE
-025D 759419     271       mov HEX3, FOUR
-0260 759302     272       mov HEX2, SIX
-0263 759219     273       mov HEX1, FOUR
-0266 759179     274       mov HEX0, ONE
-0269 120003     275       lcall Delay
-026C 758F46     276       mov HEX5, LETTER_C
-026F 758E0C     277       mov HEX4, LETTER_P
-0272 75942B     278       mov HEX3, LETTER_N
-0275 759330     279       mov HEX2, THREE
-0278 759279     280       mov HEX1, ONE
-027B 759124     281       mov HEX0, TWO
-027E 120003     282       lcall Delay
-0281            283   Task7:
-0281 758FFF     284       mov HEX5, BLANK
-0284 758EFF     285       mov HEX4, BLANK
-0287 7594FF     286       mov HEX3, BLANK
-028A 7593FF     287       mov HEX2, BLANK
-028D 7592FF     288       mov HEX1, BLANK
-0290 7591FF     289       mov HEX0, BLANK
-0293 120003     290       lcall Delay
-0296            291   
-0296 758F19     292       mov HEX5, FOUR
-0299 758EFF     293       mov HEX4, BLANK
-029C 7594FF     294       mov HEX3, BLANK
-029F 7593FF     295       mov HEX2, BLANK
-02A2 7592FF     296       mov HEX1, BLANK
-02A5 7591FF     297       mov HEX0, BLANK
-02A8 120003     298       lcall Delay
-02AB            299   
-02AB 758F19     300       mov HEX5, FOUR
-02AE 758E30     301       mov HEX4, THREE
-02B1 7594FF     302       mov HEX3, BLANK
-02B4 7593FF     303       mov HEX2, BLANK
-02B7 7592FF     304       mov HEX1, BLANK
-02BA 7591FF     305       mov HEX0, BLANK
-02BD 120003     306       lcall Delay
-02C0            307   
-02C0 758F19     308       mov HEX5, FOUR
-02C3 758E30     309       mov HEX4, THREE
-02C6 759419     310       mov HEX3, FOUR
-02C9 7593FF     311       mov HEX2, BLANK
-02CC 7592FF     312       mov HEX1, BLANK
-02CF 7591FF     313       mov HEX0, BLANK
-02D2 120003     314       lcall Delay
-02D5            315   
-02D5 758F19     316       mov HEX5, FOUR
-02D8 758E30     317       mov HEX4, THREE
-02DB 759419     318       mov HEX3, FOUR
-02DE 759302     319       mov HEX2, SIX
-02E1 7592FF     320       mov HEX1, BLANK
-02E4 7591FF     321       mov HEX0, BLANK
-02E7 120003     322       lcall Delay
-02EA            323   
-02EA 758F19     324       mov HEX5, FOUR
-02ED 758EFF     325       mov HEX4, BLANK
-02F0 7594FF     326       mov HEX3, BLANK
-02F3 7593FF     327       mov HEX2, BLANK
-02F6 7592FF     328       mov HEX1, BLANK
-02F9 7591FF     329       mov HEX0, BLANK
-02FC 120003     330       lcall Delay
-02FF            331   
-02FF 758F19     332       mov HEX5, FOUR
-0302 758E79     333       mov HEX4, ONE
-0305 7594FF     334       mov HEX3, BLANK
-0308 7593FF     335       mov HEX2, BLANK
-030B 7592FF     336       mov HEX1, BLANK
-030E 7591FF     337       mov HEX0, BLANK
-0311 120003     338       lcall Delay
-0314            339   
-0314 758F19     340       mov HEX5, FOUR
-0317 758E79     341       mov HEX4, ONE
-031A 759402     342       mov HEX3, SIX
-031D 7593FF     343       mov HEX2, BLANK
-0320 7592FF     344       mov HEX1, BLANK
-0323 7591FF     345       mov HEX0, BLANK
-0326 120003     346       lcall Delay
-0329            347   
-0329 758F19     348       mov HEX5, FOUR
-032C 758E79     349       mov HEX4, ONE
-032F 759402     350       mov HEX3, SIX
-0332 759330     351       mov HEX2, THREE
-0335 7592FF     352       mov HEX1, BLANK
-0338 7591FF     353       mov HEX0, BLANK
-033B 120003     354       lcall Delay
-033E 020281     355       ljmp Task7
-0341            356     
-0341            357    EN
+001D             46   Main:
+001D             47            ;XXX
+001D 20EA0F      48       jb SWA.2, SWA1IF1XX ;if sw2 is high check sw 1
+0020             49       
+0020             50                ;0XX
+0020 20E906      51                jb SWA.1, SWA0IF01X ;if sw2 is low and sw1 is high and sw2 is low do task 3
+0023             52            
+0023             53                ;00X
+0023             54                    ;001
+0023 20E838      55                        jb SWA.0, Task1
+0026             56                        ;000
+0026 020047      57                        ljmp Task0
+0029             58                        
+0029             59                    ;01X
+0029             60                            ;011
+0029 20E812      61                        SWA0IF01X: jb SWA.0, ToTask3
+002C             62                        ;010
+002C 020075      63                        ljmp Task2
+002F             64       
+002F             65                    ;1XX
+002F 20E906      66                    SWA1IF1XX: jb SWA.1, SWA1IF11X  ;if sw1 if high given sw2 then go to task 7
+0032             67                        ;10X
+0032             68                            ;101
+0032 20E80F      69                                jb SWA.0, ToTask5
+0035             70                                ;100
+0035 0201CA      71                                ljmp Task4
+0038             72                            ;11X
+0038             73                                    ;111
+0038 20E806      74                                    SWA1IF11X: jb SWA.0, ToTask7
+003B             75                                    ;110
+003B 02028D      76                                    ljmp Task6
+003E             77      
+003E 02011F      78            ToTask3: ljmp Task3
+0041 0202CF      79            ToTask7: ljmp Task7
+0044 0201F7      80            ToTask5: ljmp Task5
+0047             81   
+0047             82   Task0:
+0047 758F19      83            mov HEX5, FOUR
+004A 758E30      84       mov HEX4, THREE
+004D 759419      85       mov HEX3, FOUR
+0050 759302      86       mov HEX2, SIX
+0053 759219      87       mov HEX1, FOUR
+0056 759179      88       mov HEX0, ONE
+0059 120003      89       lcall Delay
+005C 80BF        90       jmp Main
+005E             91   
+005E             92   Task1:
+005E 758FFF      93       mov HEX5, BLANK
+0061 758EFF      94       mov HEX4, BLANK
+0064 7594FF      95       mov HEX3, BLANK
+0067 7593FF      96       mov HEX2, BLANK
+006A 759202      97       mov HEX1, SIX
+006D 759130      98       mov HEX0, THREE
+0070 120003      99       lcall Delay
+0073 80A8       100       jmp Main
+0075            101   
+0075            102   Task2:
+0075 758F19     103       mov HEX5, FOUR
+0078 758E30     104       mov HEX4, THREE
+007B 759419     105       mov HEX3, FOUR
+007E 759302     106       mov HEX2, SIX
+0081 759219     107       mov HEX1, FOUR
+0084 759179     108       mov HEX0, ONE
+0087 120003     109       lcall Delay
+008A            110   
+008A 758F30     111       mov HEX5, THREE
+008D 758E19     112       mov HEX4, FOUR
+0090 759402     113       mov HEX3, SIX
+0093 759319     114       mov HEX2, FOUR
+0096 759279     115       mov HEX1, ONE
+0099 759102     116       mov HEX0, SIX
+009C 120003     117       lcall Delay
+009F            118   
+009F 758F19     119       mov HEX5, FOUR
+00A2 758E02     120       mov HEX4, SIX
+00A5 759419     121       mov HEX3, FOUR
+00A8 759379     122       mov HEX2, ONE
+00AB 759202     123       mov HEX1, SIX
+00AE 759130     124       mov HEX0, THREE
+00B1 120003     125       lcall Delay
+00B4            126   
+00B4 758F02     127       mov HEX5, SIX
+00B7 758E19     128       mov HEX4, FOUR
+00BA 759479     129       mov HEX3, ONE
+00BD 759302     130       mov HEX2, SIX
+00C0 759230     131       mov HEX1, THREE
+00C3 759119     132       mov HEX0, FOUR
+00C6 120003     133       lcall Delay
+00C9            134   
+00C9 758F19     135       mov HEX5, FOUR
+00CC 758E79     136       mov HEX4, ONE
+00CF 759402     137       mov HEX3, SIX
+00D2 759330     138       mov HEX2, THREE
+00D5 759219     139       mov HEX1, FOUR
+00D8 759130     140       mov HEX0, THREE
+00DB 120003     141       lcall Delay
+00DE            142   
+00DE 758F79     143       mov HEX5, ONE
+00E1 758E02     144       mov HEX4, SIX
+00E4 759430     145       mov HEX3, THREE
+00E7 759319     146       mov HEX2, FOUR
+00EA 759230     147       mov HEX1, THREE
+00ED 759119     148       mov HEX0, FOUR
+00F0 120003     149       lcall Delay
+00F3            150   
+00F3 758F02     151       mov HEX5, SIX
+00F6 758E30     152       mov HEX4, THREE
+00F9 759419     153       mov HEX3, FOUR
+00FC 759330     154       mov HEX2, THREE
+00FF 759219     155       mov HEX1, FOUR
+0102 759102     156       mov HEX0, SIX
+0105 120003     157       lcall Delay
+0108            158   
+0108 758F30     159       mov HEX5, THREE
+010B 758E19     160       mov HEX4, FOUR
+010E 759430     161       mov HEX3, THREE
+0111 759319     162       mov HEX2, FOUR
+0114 759202     163       mov HEX1, SIX
+0117 759119     164       mov HEX0, FOUR
+011A 120003     165       lcall Delay
+011D 011D       166       jmp Main
+011F            167   
+011F            168   Task3:
+011F 758F19     169       mov HEX5, FOUR
+0122 758E30     170       mov HEX4, THREE
+0125 759419     171       mov HEX3, FOUR
+0128 759302     172       mov HEX2, SIX
+012B 759219     173       mov HEX1, FOUR
+012E 759179     174       mov HEX0, ONE
+0131 120003     175       lcall Delay
+0134            176   
+0134 758F30     177       mov HEX5, THREE
+0137 758E19     178       mov HEX4, FOUR
+013A 759430     179       mov HEX3, THREE
+013D 759319     180       mov HEX2, FOUR
+0140 759202     181       mov HEX1, SIX
+0143 759119     182       mov HEX0, FOUR
+0146 120003     183       lcall Delay
+0149            184   
+0149 758F02     185       mov HEX5, SIX
+014C 758E30     186       mov HEX4, THREE
+014F 759419     187       mov HEX3, FOUR
+0152 759330     188       mov HEX2, THREE
+0155 759219     189       mov HEX1, FOUR
+0158 759102     190       mov HEX0, SIX
+015B 120003     191       lcall Delay
+015E            192   
+015E 758F79     193       mov HEX5, ONE
+0161 758E02     194       mov HEX4, SIX
+0164 759430     195       mov HEX3, THREE
+0167 759319     196       mov HEX2, FOUR
+016A 759230     197       mov HEX1, THREE
+016D 759119     198       mov HEX0, FOUR
+0170 120003     199       lcall Delay
+0173            200   
+0173 758F19     201       mov HEX5, FOUR
+0176 758E79     202       mov HEX4, ONE
+0179 759402     203       mov HEX3, SIX
+017C 759330     204       mov HEX2, THREE
+017F 759219     205       mov HEX1, FOUR
+0182 759130     206       mov HEX0, THREE
+0185 120003     207       lcall Delay
+0188            208   
+0188 758F02     209       mov HEX5, SIX
+018B 758E19     210       mov HEX4, FOUR
+018E 759479     211       mov HEX3, ONE
+0191 759302     212       mov HEX2, SIX
+0194 759230     213       mov HEX1, THREE
+0197 759119     214       mov HEX0, FOUR
+019A 120003     215       lcall Delay
+019D            216   
+019D 758F19     217       mov HEX5, FOUR
+01A0 758E02     218       mov HEX4, SIX
+01A3 759419     219       mov HEX3, FOUR
+01A6 759379     220       mov HEX2, ONE
+01A9 759202     221       mov HEX1, SIX
+01AC 759130     222       mov HEX0, THREE
+01AF 120003     223       lcall Delay
+01B2            224   
+01B2 758F30     225       mov HEX5, THREE
+01B5 758E19     226       mov HEX4, FOUR
+01B8 759402     227       mov HEX3, SIX
+01BB 759319     228       mov HEX2, FOUR
+01BE 759279     229       mov HEX1, ONE
+01C1 759102     230       mov HEX0, SIX
+01C4 120003     231       lcall Delay
+01C7 02001D     232       ljmp Main
+01CA            233   
+01CA            234   Task4:
+01CA 758F19     235       mov HEX5, FOUR
+01CD 758E30     236       mov HEX4, THREE
+01D0 759419     237       mov HEX3, FOUR
+01D3 759302     238       mov HEX2, SIX
+01D6 759219     239       mov HEX1, FOUR
+01D9 759179     240       mov HEX0, ONE
+01DC 120003     241       lcall Delay
+01DF 758FFF     242       mov HEX5, BLANK
+01E2 758EFF     243       mov HEX4, BLANK
+01E5 7594FF     244       mov HEX3, BLANK
+01E8 7593FF     245       mov HEX2, BLANK
+01EB 7592FF     246       mov HEX1, BLANK
+01EE 7591FF     247       mov HEX0, BLANK
+01F1 120010     248       lcall Blink
+01F4 02001D     249       ljmp Main
+01F7            250   
+01F7            251   Task5:
+01F7 758FFF     252       mov HEX5, BLANK
+01FA 758EFF     253       mov HEX4, BLANK
+01FD 7594FF     254       mov HEX3, BLANK
+0200 7593FF     255       mov HEX2, BLANK
+0203 7592FF     256       mov HEX1, BLANK
+0206 7591FF     257       mov HEX0, BLANK
+0209 120003     258       lcall Delay
+020C            259   
+020C 758F19     260       mov HEX5, FOUR
+020F 758EFF     261       mov HEX4, BLANK
+0212 7594FF     262       mov HEX3, BLANK
+0215 7593FF     263       mov HEX2, BLANK
+0218 7592FF     264       mov HEX1, BLANK
+021B 7591FF     265       mov HEX0, BLANK
+021E 120003     266       lcall Delay
+0221            267   
+0221 758F19     268       mov HEX5, FOUR
+0224 758E30     269       mov HEX4, THREE
+0227 7594FF     270       mov HEX3, BLANK
+022A 7593FF     271       mov HEX2, BLANK
+022D 7592FF     272       mov HEX1, BLANK
+0230 7591FF     273       mov HEX0, BLANK
+0233 120003     274       lcall Delay
+0236            275   
+0236 758F19     276       mov HEX5, FOUR
+0239 758E30     277       mov HEX4, THREE
+023C 759419     278       mov HEX3, FOUR
+023F 7593FF     279       mov HEX2, BLANK
+0242 7592FF     280       mov HEX1, BLANK
+0245 7591FF     281       mov HEX0, BLANK
+0248 120003     282       lcall Delay
+024B            283   
+024B 758F19     284       mov HEX5, FOUR
+024E 758E30     285       mov HEX4, THREE
+0251 759419     286       mov HEX3, FOUR
+0254 759302     287       mov HEX2, SIX
+0257 7592FF     288       mov HEX1, BLANK
+025A 7591FF     289       mov HEX0, BLANK
+025D 120003     290       lcall Delay
+0260            291   
+0260 758F19     292       mov HEX5, FOUR
+0263 758E30     293       mov HEX4, THREE
+0266 759419     294       mov HEX3, FOUR
+0269 759302     295       mov HEX2, SIX
+026C 759219     296       mov HEX1, FOUR
+026F 7591FF     297       mov HEX0, BLANK
+0272 120003     298       lcall Delay
+0275            299   
+0275 758F19     300       mov HEX5, FOUR
+0278 758E30     301       mov HEX4, THREE
+027B 759419     302       mov HEX3, FOUR
+027E 759302     303       mov HEX2, SIX
+0281 759219     304       mov HEX1, FOUR
+0284 759179     305       mov HEX0, ONE
+0287 120003     306       lcall Delay
+028A 02001D     307       ljmp Main
+028D            308   
+028D            309   Task6:
+028D 758F09     310       mov HEX5, LETTER_H
+0290 758E06     311       mov HEX4, LETTER_E
+0293 759447     312       mov HEX3, LETTER_L
+0296 759347     313       mov HEX2, LETTER_L
+0299 759240     314       mov HEX1, LETTER_O
+029C 7591FF     315       mov HEX0, BLANK
+029F 120003     316       lcall Delay
+02A2 758F19     317       mov HEX5, FOUR
+02A5 758E30     318       mov HEX4, THREE
+02A8 759419     319       mov HEX3, FOUR
+02AB 759302     320       mov HEX2, SIX
+02AE 759219     321       mov HEX1, FOUR
+02B1 759179     322       mov HEX0, ONE
+02B4 120003     323       lcall Delay
+02B7 758F46     324       mov HEX5, LETTER_C
+02BA 758E0C     325       mov HEX4, LETTER_P
+02BD 75942B     326       mov HEX3, LETTER_N
+02C0 759330     327       mov HEX2, THREE
+02C3 759279     328       mov HEX1, ONE
+02C6 759124     329       mov HEX0, TWO
+02C9 120003     330       lcall Delay
+02CC 02001D     331       ljmp Main
+02CF            332   Task7:
+02CF 758FFF     333       mov HEX5, BLANK
+02D2 758EFF     334       mov HEX4, BLANK
+02D5 7594FF     335       mov HEX3, BLANK
+02D8 7593FF     336       mov HEX2, BLANK
+02DB 7592FF     337       mov HEX1, BLANK
+02DE 7591FF     338       mov HEX0, BLANK
+02E1 120003     339       lcall Delay
+02E4            340   
+02E4 758F19     341       mov HEX5, FOUR
+02E7 758EFF     342       mov HEX4, BLANK
+02EA 7594FF     343       mov HEX3, BLANK
+02ED 7593FF     344       mov HEX2, BLANK
+02F0 7592FF     345       mov HEX1, BLANK
+02F3 7591FF     346       mov HEX0, BLANK
+02F6 120003     347       lcall Delay
+02F9            348   
+02F9 758F19     349       mov HEX5, FOUR
+02FC 758E30     350       mov HEX4, THREE
+02FF 7594FF     351       mov HEX3, BLANK
+0302 7593FF     352       mov HEX2, BLANK
+0305 7592FF     353       mov HEX1, BLANK
+0308 7591FF     354       mov HEX0, BLANK
+030B 120003     355       lcall Delay
+030E            356   
+030E 758F19     357       mov HEX5, FOUR
+0311 758E30     358       mov HEX4, THREE
+0314 759419     359       mov HEX3, FOUR
+0317 7593FF     360       mov HEX2, BLANK
+031A 7592FF     361       mov HEX1, BLANK
+031D 7591FF     362       mov HEX0, BLANK
+0320 120003     363       lcall Delay
+0323            364   
+0323 758F19     365       mov HEX5, FOUR
+0326 758E30     366       mov HEX4, THREE
+0329 759419     367       mov HEX3, FOUR
+032C 759302     368       mov HEX2, SIX
+032F 7592FF     369       mov HEX1, BLANK
+0332 7591FF     370       mov HEX0, BLANK
+0335 120003     371       lcall Delay
+0338            372   
+0338 758F19     373       mov HEX5, FOUR
+033B 758EFF     374       mov HEX4, BLANK
+033E 7594FF     375       mov HEX3, BLANK
+0341 7593FF     376       mov HEX2, BLANK
+0344 7592FF     377       mov HEX1, BLANK
+0347 7591FF     378       mov HEX0, BLANK
+034A 120003     379       lcall Delay
+034D            380   
+034D 758F19     381       mov HEX5, FOUR
+0350 758E79     382       mov HEX4, ONE
+0353 7594FF     383       mov HEX3, BLANK
+0356 7593FF     384       mov HEX2, BLANK
+0359 7592FF     385       mov HEX1, BLANK
+035C 7591FF     386       mov HEX0, BLANK
+035F 120003     387       lcall Delay
+0362            388   
+0362 758F19     389       mov HEX5, FOUR
+0365 758E79     390       mov HEX4, ONE
+0368 759402     391       mov HEX3, SIX
+036B 7593FF     392       mov HEX2, BLANK
+036E 7592FF     393       mov HEX1, BLANK
+0371 7591FF     394       mov HEX0, BLANK
+0374 120003     395       lcall Delay
+0377            396   
+0377 758F19     397       mov HEX5, FOUR
+037A 758E79     398       mov HEX4, ONE
+037D 759402     399       mov HEX3, SIX
+0380 759330     400       mov HEX2, THREE
+0383 7592FF     401       mov HEX1, BLANK
+0386 7591FF     402       mov HEX0, BLANK
+0389 120003     403       lcall Delay
+038C 02001D     404       ljmp Main
+038F            405     
+038F            406    EN
