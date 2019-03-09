@@ -23,20 +23,25 @@ BLANK equ #0xff
 
 
 org 0000H
-	ljmp myprogram 
+	ljmp Task7
 
 Delay:
-    mov R2, #90 
-    L2: mov R1, #250 
-    L1: mov R0, #494
-    L0: djnz R0, L0 ; 3 machine cycles-> 3*30ns*250=22.5us djnz R1, L1 ; 22.5us*250=5.625ms
-    djnz R2, L2 ; 5.625ms*90=0.506s (approximately) ret 1.00035 s
+		mov R2, #180
+	L3:	mov R1, #250
+	L2:	mov R0, #250
+	L1: djnz R0, L1 ;3 Machince cycles 
+		djnz R1, L2
+		djnz R2, L3 
+		ret
 
 Blink:
-    mov R2, #90 
-    L3: mov R1, #250 
-    L4: mov R0, #500
-    L5: djnz R0, L5 ; 3 machine cycles-> 3*30ns*250=22.5us djnz R1, L1 ; 22.5us*500=11.25ms
+    mov R2, #180
+	L6:	mov R1, #250
+	L5:	mov R0, #25
+	L4: djnz R0, L4 ;3 Machince cycles 
+		djnz R1, L5
+		djnz R2, L6 
+		ret
 
 Task0:
 	mov HEX5, FOUR
@@ -53,6 +58,7 @@ Task1:
     mov HEX2, BLANK
     mov HEX1, SIX
     mov HEX0, THREE
+    ljmp Task2
 
 Task2:
     mov HEX5, FOUR
@@ -118,6 +124,7 @@ Task2:
     mov HEX1, SIX
     mov HEX0, FOUR
     lcall Delay
+    ljmp Task2
 
 Task3:
     mov HEX5, FOUR
@@ -345,6 +352,6 @@ Task7:
     mov HEX1, BLANK
     mov HEX0, BLANK
     lcall Delay
-    ljmp Task0
+    ljmp Task7
   
  END
