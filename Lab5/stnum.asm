@@ -26,15 +26,19 @@ org 0000H
 	ljmp myprogram 
 
 Delay:
-    mov R2, #90 L2: mov R1, #250 L1: mov R0, #494
+    mov R2, #90 
+    L2: mov R1, #250 
+    L1: mov R0, #494
     L0: djnz R0, L0 ; 3 machine cycles-> 3*30ns*250=22.5us djnz R1, L1 ; 22.5us*250=5.625ms
     djnz R2, L2 ; 5.625ms*90=0.506s (approximately) ret 1.00035 s
 
 Blink:
-    mov R2, #90 L2: mov R1, #250 L1: mov R0, #500
-    L0: djnz R0, L0 ; 3 machine cycles-> 3*30ns*250=22.5us djnz R1, L1 ; 22.5us*500=11.25ms
+    mov R2, #90 
+    L3: mov R1, #250 
+    L4: mov R0, #500
+    L5: djnz R0, L5 ; 3 machine cycles-> 3*30ns*250=22.5us djnz R1, L1 ; 22.5us*500=11.25ms
 
-T0:
+Task0:
 	mov HEX5, FOUR
     mov HEX4, THREE
     mov HEX3, FOUR
@@ -42,7 +46,7 @@ T0:
     mov HEX1, FOUR
     mov HEX0, ONE
 
-T1:
+Task1:
     mov HEX5, BLANK
     mov HEX4, BLANK
     mov HEX3, BLANK
@@ -50,7 +54,7 @@ T1:
     mov HEX1, SIX
     mov HEX0, THREE
 
-T2:
+Task2:
     mov HEX5, FOUR
     mov HEX4, THREE
     mov HEX3, FOUR
@@ -115,7 +119,7 @@ T2:
     mov HEX0, FOUR
     lcall Delay
 
-T3:
+Task3:
     mov HEX5, FOUR
     mov HEX4, THREE
     mov HEX3, FOUR
@@ -180,7 +184,7 @@ T3:
     mov HEX0, SIX
     lcall Delay
 
-T4:
+Task4:
     mov HEX5, FOUR
     mov HEX4, THREE
     mov HEX3, FOUR
@@ -188,9 +192,9 @@ T4:
     mov HEX1, FOUR
     mov HEX0, ONE
     lcall Blink
-    ljmp T4
+    ljmp Task4
 
-T5:
+Task5:
     mov HEX5, BLANK
     mov HEX4, BLANK
     mov HEX3, BLANK
@@ -247,7 +251,7 @@ T5:
     mov HEX0, ONE
     lcall Delay
 
-T6:
+Task6:
     mov HEX5, LETTER_H
     mov HEX4, LETTER_E
     mov HEX3, LETTER_L
@@ -269,7 +273,7 @@ T6:
     mov HEX1, ONE
     mov HEX0, TWO
     lcall Delay
-T7:
+Task7:
     mov HEX5, BLANK
     mov HEX4, BLANK
     mov HEX3, BLANK
@@ -341,4 +345,6 @@ T7:
     mov HEX1, BLANK
     mov HEX0, BLANK
     lcall Delay
-    ljmp T0
+    ljmp Task0
+  
+ END
