@@ -23,7 +23,7 @@ BLANK equ #0xff
 
 
 org 0000H
-	ljmp Task7
+	ljmp Main
 
 Delay:
 		mov R2, #180
@@ -43,6 +43,65 @@ Blink:
 		djnz R2, L6 
 		ret
 
+Main:
+    jnp SW.0, ZeroFalse
+    jmp ZeroTrue
+
+ZeroTrue:
+
+    jnp SW.1, OneFalse0
+    jmp OneTrue0
+
+    OneTrue0:
+
+        jnp SW.2, TwoFalse0
+        jmp TwoTrue0
+
+        TwoTrue0:
+            ljmp Task7
+
+        TwoFalse0:
+            ljmp Task6
+
+    OneFalse0:
+
+        jnp SW.2, TwoFalse1
+        jmp TwoTrue1
+
+        TwoTrue1:
+            ljmp Task5
+
+        TwoFalse1:
+            ljmp Task4
+
+ZeroFalse:
+
+    jnp SW.1, OneFalse1
+    jmp OneTrue1
+
+    OneTrue1:
+
+        jnp SW.2, TwoFalse2
+        jmp TwoTrue2
+
+        TwoTrue2:
+            ljmp Task4
+
+        TwoFalse2:
+            ljmp Task3
+
+    OneFalse1:
+
+        jnp SW.2, TwoFalse3
+        jmp TwoTrue3
+
+        TwoTrue3:
+            ljmp Task1
+        
+        TwoFalse3:
+            ljmp Task0
+
+
 Task0:
 	mov HEX5, FOUR
     mov HEX4, THREE
@@ -50,6 +109,7 @@ Task0:
     mov HEX2, SIX
     mov HEX1, FOUR
     mov HEX0, ONE
+    jmp main
 
 Task1:
     mov HEX5, BLANK
@@ -58,7 +118,7 @@ Task1:
     mov HEX2, BLANK
     mov HEX1, SIX
     mov HEX0, THREE
-    ljmp Task2
+    jmp main
 
 Task2:
     mov HEX5, FOUR
@@ -124,7 +184,7 @@ Task2:
     mov HEX1, SIX
     mov HEX0, FOUR
     lcall Delay
-    ljmp Task2
+    jmp main
 
 Task3:
     mov HEX5, FOUR
@@ -190,6 +250,7 @@ Task3:
     mov HEX1, ONE
     mov HEX0, SIX
     lcall Delay
+    ljmp main
 
 Task4:
     mov HEX5, FOUR
@@ -199,7 +260,7 @@ Task4:
     mov HEX1, FOUR
     mov HEX0, ONE
     lcall Blink
-    ljmp Task4
+    ljmp main
 
 Task5:
     mov HEX5, BLANK
@@ -257,6 +318,7 @@ Task5:
     mov HEX1, FOUR
     mov HEX0, ONE
     lcall Delay
+    ljmp main
 
 Task6:
     mov HEX5, LETTER_H
@@ -280,6 +342,7 @@ Task6:
     mov HEX1, ONE
     mov HEX0, TWO
     lcall Delay
+    ljmp main
 Task7:
     mov HEX5, BLANK
     mov HEX4, BLANK
@@ -352,6 +415,6 @@ Task7:
     mov HEX1, BLANK
     mov HEX0, BLANK
     lcall Delay
-    ljmp Task7
+    ljmp main
   
  END
