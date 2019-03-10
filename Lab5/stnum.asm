@@ -26,6 +26,7 @@ org 0000H
 	ljmp Main
 
 Delay:
+    jnb KEY.3, Main
 		mov R2, #40
 	L3:	mov R1, #250
 	L2:	mov R0, #250
@@ -87,7 +88,7 @@ Task0:
     mov HEX1, FOUR
     mov HEX0, ONE
     lcall Delay
-    jmp Main
+    jmp Task0
 
 Task1:
     mov HEX5, BLANK
@@ -97,7 +98,7 @@ Task1:
     mov HEX1, SIX
     mov HEX0, THREE
     lcall Delay
-    jmp Main
+    jmp Task1
 
 Task2:
     mov HEX5, FOUR
@@ -163,7 +164,7 @@ Task2:
     mov HEX1, SIX
     mov HEX0, FOUR
     lcall Delay
-    jmp Main
+    jmp Task2
 
 Task3:
     mov HEX5, FOUR
@@ -229,7 +230,7 @@ Task3:
     mov HEX1, ONE
     mov HEX0, SIX
     lcall Delay
-    ljmp Main
+    jmp Task3
 
 Task4:
     mov HEX5, FOUR
@@ -246,7 +247,7 @@ Task4:
     mov HEX1, BLANK
     mov HEX0, BLANK
     lcall Blink
-    ljmp Main
+    jmp Task4
 
 Task5:
     mov HEX5, BLANK
@@ -304,7 +305,7 @@ Task5:
     mov HEX1, FOUR
     mov HEX0, ONE
     lcall Delay
-    ljmp Main
+    jmp Task5
 
 Task6:
     mov HEX5, LETTER_H
@@ -401,6 +402,6 @@ Task7:
     mov HEX1, BLANK
     mov HEX0, BLANK
     lcall Delay
-    ljmp Main
+    jmp Task7
   
  END
