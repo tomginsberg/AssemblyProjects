@@ -29,7 +29,7 @@ Delay:
 		mov R2, #180
 	L3:	mov R1, #250
 	L2:	mov R0, #250
-	L1: djnz R0, L1 ;3 Machince cycles 
+	L1: djnz R0, L1 
 		djnz R1, L2
 		djnz R2, L3 
 		ret
