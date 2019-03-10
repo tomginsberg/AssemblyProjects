@@ -26,7 +26,7 @@ org 0000H
 	ljmp Main
 
 Delay:
-		mov R2, #180
+		mov R2, #40
 	L3:	mov R1, #250
 	L2:	mov R0, #250
 	L1: djnz R0, L1 
@@ -44,63 +44,40 @@ Blink:
 		ret
 
 Main:
-    jnp SW.0, ZeroFalse
-    jmp ZeroTrue
-
-ZeroTrue:
-
-    jnp SW.1, OneFalse0
-    jmp OneTrue0
-
-    OneTrue0:
-
-        jnp SW.2, TwoFalse0
-        jmp TwoTrue0
-
-        TwoTrue0:
-            ljmp Task7
-
-        TwoFalse0:
-            ljmp Task6
-
-    OneFalse0:
-
-        jnp SW.2, TwoFalse1
-        jmp TwoTrue1
-
-        TwoTrue1:
-            ljmp Task5
-
-        TwoFalse1:
-            ljmp Task4
-
-ZeroFalse:
-
-    jnp SW.1, OneFalse1
-    jmp OneTrue1
-
-    OneTrue1:
-
-        jnp SW.2, TwoFalse2
-        jmp TwoTrue2
-
-        TwoTrue2:
-            ljmp Task4
-
-        TwoFalse2:
-            ljmp Task3
-
-    OneFalse1:
-
-        jnp SW.2, TwoFalse3
-        jmp TwoTrue3
-
-        TwoTrue3:
-            ljmp Task1
-        
-        TwoFalse3:
-            ljmp Task0
-
+	;XXX
+    jb SWA.2, SWA1IF1XX ;if sw2 is high check sw 1
+    
+	    ;0XX
+	    jb SWA.1, SWA0IF01X ;if sw2 is low and sw1 is high and sw2 is low do task 3
+	
+	    ;00X
+	    	;001
+		    jb SWA.0, Task1
+		    ;000
+		    ljmp Task0
+		    
+		;01X
+			;011
+		    SWA0IF01X: jb SWA.0, ToTask3
+		    ;010
+		    ljmp Task2
+    
+		;1XX
+		SWA1IF1XX: jb SWA.1, SWA1IF11X  ;if sw1 if high given sw2 then go to task 7
+		    ;10X
+		    	;101
+			    jb SWA.0, ToTask5
+			    ;100
+			    ljmp Task4
+			;11X
+				;111
+				SWA1IF11X: jb SWA.0, ToTask7
+				;110
+				ljmp Task6
+   
+	ToTask3: ljmp Task3
+	ToTask7: ljmp Task7
+	ToTask5: ljmp Task5
 
 Task0:
 	mov HEX5, FOUR
@@ -109,7 +86,8 @@ Task0:
     mov HEX2, SIX
     mov HEX1, FOUR
     mov HEX0, ONE
-    jmp main
+    lcall Delay
+    jmp Main
 
 Task1:
     mov HEX5, BLANK
@@ -118,7 +96,8 @@ Task1:
     mov HEX2, BLANK
     mov HEX1, SIX
     mov HEX0, THREE
-    jmp main
+    lcall Delay
+    jmp Main
 
 Task2:
     mov HEX5, FOUR
@@ -184,7 +163,7 @@ Task2:
     mov HEX1, SIX
     mov HEX0, FOUR
     lcall Delay
-    jmp main
+    jmp Main
 
 Task3:
     mov HEX5, FOUR
@@ -250,7 +229,7 @@ Task3:
     mov HEX1, ONE
     mov HEX0, SIX
     lcall Delay
-    ljmp main
+    ljmp Main
 
 Task4:
     mov HEX5, FOUR
@@ -259,8 +238,15 @@ Task4:
     mov HEX2, SIX
     mov HEX1, FOUR
     mov HEX0, ONE
+    lcall Delay
+    mov HEX5, BLANK
+    mov HEX4, BLANK
+    mov HEX3, BLANK
+    mov HEX2, BLANK
+    mov HEX1, BLANK
+    mov HEX0, BLANK
     lcall Blink
-    ljmp main
+    ljmp Main
 
 Task5:
     mov HEX5, BLANK
@@ -318,7 +304,7 @@ Task5:
     mov HEX1, FOUR
     mov HEX0, ONE
     lcall Delay
-    ljmp main
+    ljmp Main
 
 Task6:
     mov HEX5, LETTER_H
@@ -342,7 +328,7 @@ Task6:
     mov HEX1, ONE
     mov HEX0, TWO
     lcall Delay
-    ljmp main
+    ljmp Main
 Task7:
     mov HEX5, BLANK
     mov HEX4, BLANK
@@ -415,6 +401,6 @@ Task7:
     mov HEX1, BLANK
     mov HEX0, BLANK
     lcall Delay
-    ljmp main
+    ljmp Main
   
  END
