@@ -9,8 +9,6 @@ def hexcomp():
     for bb in b:
         c += str(int(not int(bb)))
     print(c)
-
-
     print("#"+hex(int(c,2)))
 
 def rotate(s):
@@ -24,8 +22,7 @@ def roll():
         out = ""
         for i in range(6):
             out += temp.format(5-i,lookup[num[i]])
-        for i in range(2):
-            out += "lcall Delay\n"
+        out += "lcall Delay\n"
         print(out)
         number = rotate(number)
 
@@ -65,4 +62,5 @@ def create():
             out += temp.format(5-k,"BLANK")
         out += "lcall Delay\n"
         print(out)
-hexcomp()
+
+create()
