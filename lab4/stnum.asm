@@ -1,25 +1,6 @@
 $MODDE0CV
 
 ; numbers
-ZERO equ #0x40
-ONE equ #0x79
-TWO equ #0x24
-THREE equ #0x30
-FOUR equ #0x19
-FIVE equ #0x12
-SIX equ #0x02
-SEVEN equ #0x78
-
-
-; letters
-LETTER_H equ #0x09
-LETTER_E equ #0x06
-LETTER_L equ #0x47
-LETTER_O equ #0x40
-LETTER_C equ #0x46
-LETTER_P equ #0x0c
-LETTER_N equ #0x2b
-BLANK equ #0xff
 
 
 org 0000H
