@@ -139,13 +139,11 @@ mycode:
 
 forever:
     jb KEY.3, no_add
-
     lcall bcd2hex
     lcall copy_xy
     Load_X(0)
     lcall hex2bcd
     lcall Display
-
     jnb KEY.0, is_mult
     mov operation, #0000_0001B
     jnb KEY.3, $
@@ -178,6 +176,7 @@ equals:
     jnb KEY.1, $ ; Wait for user to release the ’=’ key lcall bcd2hex ; Convert the BCD number to hex in x
     lcall bcd2hex; Select the function the user wants to perform:
     mov a, operation ; The accumulator is bit addressable! jb acc.0, do_addition
+    jb acc.0, do_addition
     jb acc.1, do_subtraction
     jb acc.2, do_multiplication
     jb acc.3, do_division

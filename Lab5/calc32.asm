@@ -139,13 +139,11 @@ mycode:
 
 forever:
 	jb KEY.3, sub_check ; If '+' key not pressed, skip; Wait for user to release '+' key
-	
 	lcall bcd2hex ; Convert the BCD number to hex in x
 	lcall copy_xy ; move x to y (this is a function)
 	Load_X(0) ; clear x (this is a macro)
 	lcall hex2bcd ; Convert binary x to BCD
 	lcall Display ; Display the new BCD number
-	
 	jnb KEY.0, is_mult
 	mov operation, #0000_0001B
 	jnb KEY.3, $
