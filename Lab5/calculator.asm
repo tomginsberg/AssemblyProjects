@@ -5,6 +5,7 @@ $modde0cv
 
 	dseg at 30h
 
+operation: ds 1
 x:		ds	4
 y:		ds	4
 bcd:	ds	5
@@ -124,35 +125,50 @@ ReadNumber_no_number:
 	clr c
 	ret
 	
-mycode:
-	mov SP, #7FH
-	clr a
-	mov LEDRA, a
-	mov LEDRB, a
-	mov bcd+0, a
-	mov bcd+1, a
-	mov bcd+2, a
-	mov bcd+3, a
-	mov bcd+4, a
-	lcall Display
-
 forever:
-      jb KEY.3, no_add
-      jnb KEY.3, $
+    jb KEY.3, no_add
+
+    lcall bcd2hex
+    lcall copy_xy
+    Load_X(0)
+    lcall hex2bcd
+    lcall Display
+
+    jnb KEY.0, is_mult
+    mov operation, #0000_0001B
+    jnb KEY.3, $
+    ljmp forever
+    is_mult:
+        mov operation, #0000_0100B
+        jnb KEY.3, $
+        ljmp forever
+
+    no_add:
+      jb KEY.2, equals
       lcall bcd2hex
-      lcall copy_xy
-      Load_X(0)
+      lcall copy_xy ; move x to y (this is a function)
+	  Load_X(0) ; clear x (this is a macro)
       lcall hex2bcd
       lcall Display
-      ljmp forever
-no_add:
-      jb KEY.1, no_equal
-      jnb KEY.1, $
-      lcall bcd2hex
-      lcall add32
-      lcall hex2bcd
-      lcall Display
-      ljmp forever
+      
+    jnb KEY.0, is_div
+    mov operation, #0000_0010B
+    ljmp forever
+
+    is_div:
+        mov operation, #0000_1000B
+        ljmp forever
+
+
+equals:
+    jb KEY.1, no_equal ; If the ’=’ key not pressed, skip
+    jnb KEY.1, $ ; Wait for user to release the ’=’ key lcall bcd2hex ; Convert the BCD number to hex in x
+    lcall bcd2hex; Select the function the user wants to perform:
+    mov a, operation ; The accumulator is bit addressable! jb acc.0, do_addition
+    jb acc.1, do_subtraction
+    jb acc.2, do_multiplication
+    jb acc.3, do_division
+
 no_equal:
       ; get more numbers
       lcall ReadNumber
@@ -161,4 +177,30 @@ no_equal:
       lcall Display
 no_new_digit:
       ljmp forever
+
+do_addition:
+		lcall add32 ; Add the numbers stored in x and y
+		lcall hex2bcd ; Convert result in x to BCD
+		lcall Display ; Display BCD using 7-segment displays
+		ljmp forever ; go check for more input
+	
+	do_subtraction:
+		lcall xchg_xy
+		lcall sub32
+		lcall hex2bcd
+		lcall Display
+		ljmp  forever
+		
+	do_multiplication:
+		lcall mul32
+		lcall hex2bcd
+		lcall Display
+		ljmp forever
+		
+	do_division:
+		lcall xchg_xy
+		lcall div32
+		lcall hex2bcd
+		lcall Display
+		ljmp  forever
 END

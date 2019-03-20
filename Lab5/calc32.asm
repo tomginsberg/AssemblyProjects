@@ -147,15 +147,14 @@ forever:
 		lcall Display ; Display the new BCD number
 		
 		jnb KEY.0, is_mult
-			mov operation, #0000_0001B
-			jnb KEY.3, $
-			ljmp forever
+		mov operation, #0000_0001B
+		jnb KEY.3, $
+		ljmp forever
 		is_mult:
 			mov operation, #0000_0100B
 			jnb KEY.3, $
 			ljmp forever
 
-		ljmp forever ; Go check for more input
 	sub_check:
 		jb KEY.2, do_opp
 		
@@ -175,8 +174,8 @@ forever:
 			ljmp forever
 		
 	do_opp:
-		jb KEY.1, no_equal ; If the ’=’ key not pressed, skip
-		jnb KEY.1, $ ; Wait for user to release the ’=’ key
+		jb KEY.1, no_equal ; If the ï¿½=ï¿½ key not pressed, skip
+		jnb KEY.1, $ ; Wait for user to release the ï¿½=ï¿½ key
 		lcall bcd2hex ; Convert the BCD number to hex in x
 		; Select the function the user wants to perform:
 		mov a, operation ; The accumulator is bit addressable!
