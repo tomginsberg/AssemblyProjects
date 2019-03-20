@@ -138,51 +138,51 @@ mycode:
 	lcall Display
 
 forever:
-		jb KEY.3, sub_check ; If '+' key not pressed, skip; Wait for user to release '+' key
-		
-		lcall bcd2hex ; Convert the BCD number to hex in x
-		lcall copy_xy ; move x to y (this is a function)
-		Load_X(0) ; clear x (this is a macro)
-		lcall hex2bcd ; Convert binary x to BCD
-		lcall Display ; Display the new BCD number
-		
-		jnb KEY.0, is_mult
-		mov operation, #0000_0001B
-		jnb KEY.3, $
-		ljmp forever
-		is_mult:
-			mov operation, #0000_0100B
-			jnb KEY.3, $
-			ljmp forever
+	jb KEY.3, sub_check ; If '+' key not pressed, skip; Wait for user to release '+' key
+	
+	lcall bcd2hex ; Convert the BCD number to hex in x
+	lcall copy_xy ; move x to y (this is a function)
+	Load_X(0) ; clear x (this is a macro)
+	lcall hex2bcd ; Convert binary x to BCD
+	lcall Display ; Display the new BCD number
+	
+	jnb KEY.0, is_mult
+	mov operation, #0000_0001B
+	jnb KEY.3, $
+	ljmp forever
 
-	sub_check:
-		jb KEY.2, do_opp
+is_mult:
+	mov operation, #0000_0100B
+	jnb KEY.3, $
+	ljmp forever
+
+sub_check:
+	jb KEY.2, do_opp
+	lcall bcd2hex ; Convert the BCD number to hex in x
+	lcall copy_xy ; move x to y (this is a function)
+	Load_X(0) ; clear x (this is a macro)
+	lcall hex2bcd ; Convert binary x to BCD
+	lcall Display ; Display the new BCD number
+	jnb KEY.0, is_div
+	mov operation, #0000_0010B
+	jnb KEY.2, $
+	ljmp forever
+
+is_div:
+	mov operation, #0000_1000B
+	jnb KEY.2, $
+	ljmp forever
 		
-		lcall bcd2hex ; Convert the BCD number to hex in x
-		lcall copy_xy ; move x to y (this is a function)
-		Load_X(0) ; clear x (this is a macro)
-		lcall hex2bcd ; Convert binary x to BCD
-		lcall Display ; Display the new BCD number
-		
-		jnb KEY.0, is_div
-			mov operation, #0000_0010B
-			jnb KEY.2, $
-			ljmp forever
-		is_div:
-			mov operation, #0000_1000B
-			jnb KEY.2, $
-			ljmp forever
-		
-	do_opp:
-		jb KEY.1, no_equal ; If the �=� key not pressed, skip
-		jnb KEY.1, $ ; Wait for user to release the �=� key
-		lcall bcd2hex ; Convert the BCD number to hex in x
-		; Select the function the user wants to perform:
-		mov a, operation ; The accumulator is bit addressable!
-		jb acc.0, do_addition
-		jb acc.1, do_subtraction
-		jb acc.2, do_multiplication
-		jb acc.3, do_division
+do_opp:
+	jb KEY.1, no_equal ; If the �=� key not pressed, skip
+	jnb KEY.1, $ ; Wait for user to release the �=� key
+	lcall bcd2hex ; Convert the BCD number to hex in x
+	; Select the function the user wants to perform:
+	mov a, operation ; The accumulator is bit addressable!
+	jb acc.0, do_addition
+	jb acc.1, do_subtraction
+	jb acc.2, do_multiplication
+	jb acc.3, do_division
 		
 	no_equal:
 		; get more numbers

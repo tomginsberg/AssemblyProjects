@@ -165,12 +165,13 @@ no_add:
     lcall Display
     jnb KEY.0, is_div
     mov operation, #0000_0010B
+    jnb KEY.2, $
     ljmp forever
 
 is_div:
     mov operation, #0000_1000B
+    jnb KEY.2, $
     ljmp forever
-
 
 equals:
     jb KEY.1, no_equal ; If the ’=’ key not pressed, skip
@@ -182,37 +183,38 @@ equals:
     jb acc.3, do_division
 
 no_equal:
-      ; get more numbers
-      lcall ReadNumber
-      jnc no_new_digit
-      lcall Shift_Digits
-      lcall Display
+    ; get more numbers
+    lcall ReadNumber
+    jnc no_new_digit
+    lcall Shift_Digits
+    lcall Display
+
 no_new_digit:
-      ljmp forever
+    ljmp forever
 
 do_addition:
-		lcall add32 ; Add the numbers stored in x and y
-		lcall hex2bcd ; Convert result in x to BCD
-		lcall Display ; Display BCD using 7-segment displays
-		ljmp forever ; go check for more input
-	
-	do_subtraction:
-		lcall xchg_xy
-		lcall sub32
-		lcall hex2bcd
-		lcall Display
-		ljmp  forever
-		
-	do_multiplication:
-		lcall mul32
-		lcall hex2bcd
-		lcall Display
-		ljmp forever
-		
-	do_division:
-		lcall xchg_xy
-		lcall div32
-		lcall hex2bcd
-		lcall Display
-		ljmp  forever
+    lcall add32 ; Add the numbers stored in x and y
+    lcall hex2bcd ; Convert result in x to BCD
+    lcall Display ; Display BCD using 7-segment displays
+    ljmp forever ; go check for more input
+
+do_subtraction:
+    lcall xchg_xy
+    lcall sub32
+    lcall hex2bcd
+    lcall Display
+    ljmp  forever
+    
+do_multiplication:
+    lcall mul32
+    lcall hex2bcd
+    lcall Display
+    ljmp forever
+    
+do_division:
+    lcall xchg_xy
+    lcall div32
+    lcall hex2bcd
+    lcall Display
+    ljmp  forever
 END
