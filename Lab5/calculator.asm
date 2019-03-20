@@ -1,7 +1,7 @@
 $modde0cv
 
 	CSEG at 0
-	ljmp forever
+	ljmp mycode
 
 	dseg at 30h
 
@@ -125,6 +125,18 @@ ReadNumber_no_number:
 	clr c
 	ret
 	
+mycode:
+	mov SP, #7FH
+	clr a
+	mov LEDRA, a
+	mov LEDRB, a
+	mov bcd+0, a
+	mov bcd+1, a
+	mov bcd+2, a
+	mov bcd+3, a
+	mov bcd+4, a
+	lcall Display
+
 forever:
     jb KEY.3, no_add
 
@@ -138,26 +150,26 @@ forever:
     mov operation, #0000_0001B
     jnb KEY.3, $
     ljmp forever
-    is_mult:
-        mov operation, #0000_0100B
-        jnb KEY.3, $
-        ljmp forever
 
-    no_add:
-      jb KEY.2, equals
-      lcall bcd2hex
-      lcall copy_xy ; move x to y (this is a function)
-	  Load_X(0) ; clear x (this is a macro)
-      lcall hex2bcd
-      lcall Display
-      
+is_mult:
+    mov operation, #0000_0100B
+    jnb KEY.3, $
+    ljmp forever
+
+no_add:
+    jb KEY.2, equals
+    lcall bcd2hex
+    lcall copy_xy 
+    Load_X(0) 
+    lcall hex2bcd
+    lcall Display
     jnb KEY.0, is_div
     mov operation, #0000_0010B
     ljmp forever
 
-    is_div:
-        mov operation, #0000_1000B
-        ljmp forever
+is_div:
+    mov operation, #0000_1000B
+    ljmp forever
 
 
 equals:
