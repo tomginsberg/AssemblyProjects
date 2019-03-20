@@ -159,8 +159,6 @@ no_equal:
       jnc no_new_digit
       lcall Shift_Digits
       lcall Display
-      no_new_digit:
-      ljmp forever
 no_new_digit:
-    ljmp forever ;
+      ljmp forever
 END
