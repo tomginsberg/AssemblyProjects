@@ -1,7 +1,7 @@
 $modde0cv
 
 	CSEG at 0
-	ljmp mycode
+	ljmp forever
 
 	dseg at 30h
 
@@ -137,10 +137,30 @@ mycode:
 	lcall Display
 
 forever:
-	lcall ReadNumber
-	jnc forever
-	lcall Shift_Digits
-	lcall Display
-	ljmp forever
-	
-end
+      jb KEY.3, no_add
+      jnb KEY.3, $
+      lcall bcd2hex
+      lcall copy_xy
+      Load_X(0)
+      lcall hex2bcd
+      lcall Display
+      ljmp forever
+no_add:
+      jb KEY.1, no_equal
+      jnb KEY.1, $
+      lcall bcd2hex
+      lcall add32
+      lcall hex2bcd
+      lcall Display
+      ljmp forever
+no_equal:
+      ; get more numbers
+      lcall ReadNumber
+      jnc no_new_digit
+      lcall Shift_Digits
+      lcall Display
+      no_new_digit:
+      ljmp forever
+no_new_digit:
+    ljmp forever ;
+END
